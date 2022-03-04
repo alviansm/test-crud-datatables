@@ -11,6 +11,7 @@ MONGO_URI='mongodb://localhost:27017/customer-datatables'
 SECRET_KEY='customerdatatablestest'
 ```
 `MONGO_URI` is the mongodb uri connection and `SECRET_KEY` is web application secret key, set to random variable for more secure secret_key.
+- `npm run start` or other custom script available at `package.json` to run the app (use nodemon to continuesly run node app for development server)
 - Enjoy
 
 ## Having issue or suggestion?
