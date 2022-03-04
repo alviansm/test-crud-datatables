@@ -1,0 +1,157 @@
+<h1 class="text-center mt-md-3">Lithium Pizza Customer Table</h1>
+<p class="text-center">author: <a href="https://github.com/alviansm" target="_blank">Alvians Maulana</a> | Github Repo: <a href="https://www.github.com/alviansm/test-crud-datatables" target="_blank">github.com/alviansm/test-crud-datatables</a></a></p>
+<div class="container mt-md-5 mb-md-5">
+    <div class="d-flex">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-warning btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="POST">
+                    <div class="mb-3">
+                        <label for="nama" class="form-label"><b>Nama</b></label>
+                        <input type="text" class="form-control" id="nama" name="nama" placeholder="John Doe" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat" class="form-label"><b>Alamat</b></label>
+                        <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Customer's Address" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="tanggal_lahir" class="form-label"><b>Tanggal Lahir</b></label>
+                        <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="20/11/1997" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customer_type" class="form-label"><b>Customer Type</b></label>
+                        <input type="text" class="form-control" id="customer_type" name="customer_type" placeholder="Regular" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="keterangan" class="form-label"><b>Keterangan</b></label>
+                        <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Pelanggan Setia" required>
+                    </div>
+                    <div class="input-group mb-3">
+                    <label class="input-group-text" for="status">Status</label>
+                    <select class="form-select" id="status" name="status" required>
+                        <option value="true" selected>Active</option>
+                        <option value="false">Passive</option>
+                    </select>
+                    </div>
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </div>
+            </div>
+        </div>
+        </div>
+
+        <a class="btn btn-primary btn-sm mb-2 mx-2" href="/">Refresh</a>
+    </div>
+    <table id="customer_table" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Nama</th>
+                <th>Alamat</th>
+                <th>Customer Type</th>
+                <th>Tanggal Lahir</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Single data -->
+            {{#each customer}}
+            <tr>
+                <td class="d-flex">
+                    <form action="/{{_id}}?_method=DELETE" method="POST">                    
+                        <button type="submit" class="btn btn-danger btn-sm mx-1">
+                            Delete
+                        </button>
+                    </form>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm mx-1" data-bs-toggle="modal" data-bs-target="#exampleModal{{_id}}">
+                        Update
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{_id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="/{{_id}}?_method=PUT" method="POST">
+                            <div class="mb-3">
+                                <label for="nama" class="form-label"><b>Nama</b></label>
+                                <input type="text" class="form-control" id="nama" name="nama" placeholder="John Doe" value="{{nama}}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="alamat" class="form-label"><b>Alamat</b></label>
+                                <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Customer's Address" value="{{alamat}}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="tanggal_lahir" class="form-label"><b>Tanggal Lahir</b></label>
+                                <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" placeholder="20/11/1997" value="{{tanggal_lahir}}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="customer_type" class="form-label"><b>Customer Type</b></label>
+                                <input type="text" class="form-control" id="customer_type" name="customer_type" placeholder="Regular" value="{{customer_type}}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="keterangan" class="form-label"><b>Keterangan</b></label>
+                                <input type="text" class="form-control" id="keterangan" name="keterangan" placeholder="Pelanggan Setia" value="{{keterangan}}" required>
+                            </div>
+                            <div class="input-group mb-3">
+                            <label class="input-group-text" for="status">Status</label>
+                            <select class="form-select" id="status" name="status" required>
+                                <option value="true" selected>Active</option>
+                                <option value="false">Passive</option>
+                            </select>
+                            </div>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </td>
+                <td>{{nama}}</td>
+                <td>{{alamat}}</td>
+                <td>{{customer_type}}</td>
+                <td>{{tanggal_lahir}}</td>
+                <td>{{status}}</td>
+            </tr>
+            {{else}}
+            <tr>
+                <td class="d-flex">
+                    <p>Tolong tambahkan user</p>
+                </td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Option</th>
+                <th class="add_search">Nama</th>
+                <th class="add_search">Alamat</th>
+                <th class="add_search">Customer Type</th>
+                <th class="add_search">Tanggal Lahir</th>
+                <th class="add_search">Status</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
